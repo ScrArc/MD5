@@ -1,0 +1,7 @@
+{
+	"user": "AbyssMorgan",
+	"repo": "MD5",
+	"entry": "main.pwn",
+	"output": "main.amx",
+	"dependencies": ["Southclaws/samp-stdlib"]
+}
