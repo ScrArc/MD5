@@ -99,7 +99,7 @@ stock MD5::Init(ctx[MD5::Enum]){
 	ctx[MD5::CONTEXT_BITS][1] = 0;
 }
 
-stock MD5::Update(ctx[MD5::Enum], data[], len){
+stock MD5::Update(ctx[MD5::Enum], const data[], len){
 	new t = ctx[MD5::CONTEXT_BITS][0], s, buf = 0;
 	if((ctx[MD5::CONTEXT_BITS][0] = t + (len << 3)) < t){
 		ctx[MD5::CONTEXT_BITS][1]++;
@@ -126,7 +126,7 @@ stock MD5::Update(ctx[MD5::Enum], data[], len){
 	MD5::copy(ctx[MD5::CONTEXT_IN], data[buf], 0, len);
 }
 
-stock MD5::copy(dest[],src[],start,len){
+stock MD5::copy(dest[],const src[],start,len){
 	new i = start >>> 2, j = 0, ch;
 	while(j < len){
 		ch = src[j++] & 0xFF;
@@ -175,7 +175,7 @@ stock MD5::Final(ctx[MD5::Enum], string = false){
 	return digest;
 }
 
-static stock MD5::Transform(buf[],in[]){
+static stock MD5::Transform(buf[],const in[]){
 	new a = buf[0], b = buf[1], c = buf[2], d = buf[3];
 	MD5::Step(MD5::F1,a,b,c,d,in[0]+0xD76AA478,7);
 	MD5::Step(MD5::F1,d,a,b,c,in[1]+0xE8C7B756,12);
